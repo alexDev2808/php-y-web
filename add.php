@@ -2,22 +2,15 @@
 
 <?php
 
+require "database.php";
+
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $contact = [
-      "name" => $_POST["name"],
-      "phone_number" => $_POST["phone_number"],
-    ];
-    
-    if (file_exists("contacts.json")) {
-      $contacts = json_decode(file_get_contents("contacts.json"), true); // true para array asociativo
-    } else {
-      $contacts = [];
-    }
+      $name = $_POST["name"];
+      $phone_number = $_POST["phone_number"];
 
-    $contacts[] = $contact;
-
-    file_put_contents("contacts.json", json_encode($contacts));
-
+      $statement = $conn->prepare("INSERT INTO contacts(name, phone_number) VALUES ('$name', '$phone_number')");
+      $statement->execute();
+      
     header("Location: index.php"); // redirect
   }
 
