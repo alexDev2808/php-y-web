@@ -50,7 +50,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       ":phone_number" => $_POST["phone_number"],
     ]);
 
+    $_SESSION["flash"] = ["message" => "Contacto {$_POST['name']} editado."];
+
     header("Location: home.php"); // redirect
+    return;
   }
 }
 

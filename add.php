@@ -28,7 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $statement->bindParam(":phone_number", $_POST["phone_number"]);
     $statement->execute();
 
+    $_SESSION["flash"] = ["message" => "Contacto {$_POST['name']} agregado."];
     header("Location: home.php"); // redirect
+    return;
   }
 }
 
