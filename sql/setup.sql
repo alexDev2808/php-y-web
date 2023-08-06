@@ -12,7 +12,10 @@ INSERT INTO users (name, email, password) VALUES ("alexis", "test@test.com", "12
 CREATE TABLE contacts(
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
-    phone_number VARCHAR(255)
+    phone_number VARCHAR(255),
+    user_id INT NOT NULL,
+
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-INSERT INTO contacts (name, phone_number) VALUES ("Tania", "2461403234");
+-- INSERT INTO contacts (user_id, name, phone_number) VALUES (5, "Tania", "2461403234");
